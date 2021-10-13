@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Display All Dishes";
+}
+
+<div class="w-50 mx-auto">
+    <h1>Welcome to CRUDelicious</h1>
+    <a href="/new" class="btn btn-primary m-3">Add a Dish</a>
+    <h3> Check out some recent dishes!</h3>
+    <ul>
+        @{
+            foreach(Dish dish in ViewBag.AllDishes)
+            {
+                <li> <a href="/@dish.DishId">@dish.DishName</a> by @dish.ChefName</li>
+            }
+        }
+    </ul>
+</div>

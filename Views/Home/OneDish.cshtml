@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "View @ViewBag.OneDish.DishName";
+}
+
+<div class="w-50 mx-auto">
+    <a href="/" class="btn btn-primary">Home</a>
+    <h1>@ViewBag.OneDish.DishName</h1>
+    
+    <h3>Description: @ViewBag.OneDish.Description</h3>
+    <h4>Calories:@ViewBag.OneDish.Calories </h4>
+    <h4>Taste:@ViewBag.OneDish.Taste </h4>
+
+    <a href="/@ViewBag.OneDish.DishId/edit" class="btn btn-primary m-3">Edit This Dish</a>
+    <a href="/@ViewBag.OneDish.DishId/delete" class="btn btn-danger">Delete this Post</a>
+</div>

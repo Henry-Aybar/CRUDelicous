@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Create Dish";
+}
+@model Dish
+<div class="w-50 mx-auto">
+    <Form asp-action="CreateDish" asp-controller="Home" method="post">
+        <div class="d-flex justify-content-between">
+            <h1>Add a New Dish!</h1>
+            <a href="/" class="btn btn-primary">Home</a>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ChefName"></label>
+            <input asp-for="ChefName" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DishName"></label>
+            <input asp-for="DishName" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Calories"></label>
+            <input asp-for="Calories" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Taste"></label>
+            <select asp-for="Taste" class="form-select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control">Description Here</textarea>
+        </div>
+
+        <input type="submit" class="btn btn-lg btn-success">
+    </Form>
+    
+</div>
