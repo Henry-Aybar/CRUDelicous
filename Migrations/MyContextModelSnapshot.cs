@@ -17,6 +17,34 @@ namespace CRUDelicous.Migrations
                 .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("CRUDelicous.Models.Chef", b =>
+                {
+                    b.Property<int>("ChefId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("ChefFirstName")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("ChefLastName")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("ChefId");
+
+                    b.ToTable("Chefs");
+                });
+
             modelBuilder.Entity("CRUDelicous.Models.Dish", b =>
                 {
                     b.Property<int>("DishId")
@@ -26,16 +54,18 @@ namespace CRUDelicous.Migrations
                     b.Property<int>("Calories")
                         .HasColumnType("int");
 
-                    b.Property<string>("ChefName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("ChefId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("DishName")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Taste")
@@ -46,7 +76,18 @@ namespace CRUDelicous.Migrations
 
                     b.HasKey("DishId");
 
+                    b.HasIndex("ChefId");
+
                     b.ToTable("Dishes");
+                });
+
+            modelBuilder.Entity("CRUDelicous.Models.Dish", b =>
+                {
+                    b.HasOne("CRUDelicous.Models.Chef", "Chef")
+                        .WithMany("Dishes")
+                        .HasForeignKey("ChefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

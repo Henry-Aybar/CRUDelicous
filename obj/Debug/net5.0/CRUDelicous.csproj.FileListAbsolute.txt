@@ -51,3 +51,5 @@ D:\CodingDojo\CSharp\ORM\CRUDelicous\obj\Debug\net5.0\CRUDelicous.genruntimeconf
 D:\CodingDojo\CSharp\ORM\CRUDelicous\obj\Debug\net5.0\Razor\Views\Home\NewDish.cshtml.g.cs
 D:\CodingDojo\CSharp\ORM\CRUDelicous\obj\Debug\net5.0\Razor\Views\Home\OneDish.cshtml.g.cs
 D:\CodingDojo\CSharp\ORM\CRUDelicous\obj\Debug\net5.0\Razor\Views\Home\EditDish.cshtml.g.cs
+D:\CodingDojo\CSharp\ORM\CRUDelicous\obj\Debug\net5.0\Razor\Views\Home\NewChef.cshtml.g.cs
+D:\CodingDojo\CSharp\ORM\CRUDelicous\obj\Debug\net5.0\Razor\Views\Home\AllDishes.cshtml.g.cs

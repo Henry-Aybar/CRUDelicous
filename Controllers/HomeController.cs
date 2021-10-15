@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CRUDelicous.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUDelicous.Controllers
 {
@@ -19,22 +20,57 @@ namespace CRUDelicous.Controllers
         }
 
         //=========================
-        // Dispaly All Dishes
+        // Dispaly All Chefs
         //=========================
         public IActionResult Index()
         {
-            ViewBag.AllDishes = _context.Dishes
-            .OrderByDescending(dish => dish.DishId)
-            .ToList();
+            ViewBag.AllChefs = _context.Chefs
+                .OrderBy(chef => chef.ChefId)
+                .Include(chef => chef.Dishes)
+                .ToList();
+
             return View();
+        }
+
+        //=========================
+        // Dispaly All Dishes
+        //=========================
+        [HttpGet("/dishes")]
+        public IActionResult AllDishes()
+        {
+            List<Dish> dishAndChef = _context.Dishes
+                .Include(dish => dish.Chef)
+                .ToList();
+
+            ViewBag.AllDishes = _context.Dishes
+                .OrderByDescending(dish => dish.DishId)
+                .ToList();
+            return View("AllDishes");
+        }
+
+        //=========================
+        // NewChef Get and Post
+        //=========================
+        [HttpGet("/chef/new")]
+        public IActionResult NewChef()
+        {
+            return View("NewChef");
+        }
+        [HttpPost("createChef")]
+        public IActionResult CreateChef(Chef newChef)
+        {
+            _context.Add(newChef);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //=========================
         // NewDish Get and Post
         //=========================
-        [HttpGet("new")]
+        [HttpGet("/dish/new")]
         public IActionResult NewDish()
         {
+            ViewBag.AllChefs = _context.Chefs.ToList();
             return View("NewDish");
         }
 
@@ -71,7 +107,6 @@ namespace CRUDelicous.Controllers
         {
             Dish editMe = _context.Dishes.FirstOrDefault(dish => dish.DishId == EditedDish.DishId);
 
-            editMe.ChefName = EditedDish.ChefName;
             editMe.DishName = EditedDish.DishName;
             editMe.Calories = EditedDish.Calories;
             editMe.Taste = EditedDish.Taste;

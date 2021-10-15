@@ -1,17 +1,33 @@
 ﻿@{
-    ViewData["Title"] = "Display All Dishes";
+    ViewData["Title"] = "Display All Chefs";
 }
 
 <div class="w-50 mx-auto">
-    <h1>Welcome to CRUDelicious</h1>
-    <a href="/new" class="btn btn-primary m-3">Add a Dish</a>
-    <h3> Check out some recent dishes!</h3>
-    <ul>
+    <h1>Chefs | <a href="/dishes">Dishes</a> </h1>
+    <a href="/chef/new" class="btn btn-primary m-3">Add a Chef</a>
+    <a href="/dish/new" class="btn btn-primary m-3">Add a Dish</a>
+    <h3> Check Out Some of Our Amazing Chefs!!</h3>
+    
+    <table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col"># of Dishes</th>
+        </tr>
+    </thead>
+    <tbody>
         @{
-            foreach(Dish dish in ViewBag.AllDishes)
+            foreach(Chef chef in ViewBag.AllChefs)
             {
-                <li> <a href="/@dish.DishId">@dish.DishName</a> by @dish.ChefName</li>
+                <tr>
+                    <td>@chef.ChefFirstName @chef.ChefLastName</td>
+                    <td>@chef.Birthday</td>
+                    <td>@chef.Dishes.Count</td>
+                </tr>
             }
         }
-    </ul>
+  </tbody>
+</table>
+
 </div>
